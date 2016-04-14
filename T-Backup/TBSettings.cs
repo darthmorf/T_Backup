@@ -16,7 +16,6 @@ namespace T_Backup
 {
     public class TBSettings
     {
-        //creates a variable for each setting
         public string TFilesPath;
         public string BackupToPath;
         public string Texepath;
@@ -54,7 +53,7 @@ namespace T_Backup
             //trys to fill a string with the current profile name from registry
             string regTest = CurrentProfileName = (string)Registry.GetValue(regPath, "ProfileName", CurrentProfileName);
 
-            //if the T_Backup registry does not exist (ie this is the first run of the program
+            //if the T_Backup registry does not exist (ie this is the first run of the program)
             if(regTest == null)
             {
                 //fetches the current user's My Documents path
@@ -63,16 +62,13 @@ namespace T_Backup
                 TFilesPath = mydocs + "\\My Games\\Terraria";
                 //creates the folder to store the backups in
                 Directory.CreateDirectory(mydocs + "\\Terraria Backups");
-                //stores that folder's path in a variable
                 BackupToPath = mydocs + "\\Terraria Backups";
                 //Loads the defaults for the rest
                 Texepath = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Terraria\\Terraria.exe";
                 Nobackups = 10;
                 CurrentProfileName = "Default";
-                //Saves these values to the registry.
                 Save();
             }
-            //Whether first run or not, loads the settings from the registry.
             Load();
         }
 
@@ -80,9 +76,7 @@ namespace T_Backup
         {//create a new profile function
             //sets the name to the new name
             CurrentProfileName = newProfileName;
-            //saves the values under this name
             Save();
-            //loads those values
             Load();
         }
 
@@ -90,7 +84,6 @@ namespace T_Backup
         {//load function
             //sets the name to the profile to load name
             CurrentProfileName = loadProfileName;
-            //loads that profile
             Load();
         }
 

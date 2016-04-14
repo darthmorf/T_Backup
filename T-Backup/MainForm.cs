@@ -16,57 +16,120 @@ namespace T_Backup //By Sam Poirier AKA darthmorf
     public partial class MainForm : Form
     {
         TBSettings MySettings ;
-        
+
+        public string error = "\n \n If you frequently encounter this error, please post the error on the official thread: ";
+        public string tbackupthread = "http://goo.gl/VrDNIY";
+
+
         public MainForm()
         {
-            InitializeComponent();
-            MySettings = new TBSettings() ;
+            try
+            {
+                InitializeComponent();
+                MySettings = new TBSettings();
 
-            MySettings.Startup();
+                MySettings.Startup();
 
-            //import settings from TBSettings class
-            TexepathBox.Text = MySettings.Texepath;
-            TFilesPathBox.Text = MySettings.TFilesPath;
-            BackupToPathBox.Text = MySettings.BackupToPath;
+                //import settings from TBSettings class
+                TexepathBox.Text = MySettings.Texepath;
+                TFilesPathBox.Text = MySettings.TFilesPath;
+                BackupToPathBox.Text = MySettings.BackupToPath;
 
-            string NobackupsStr = string.Format("{0}", MySettings.Nobackups);
-            NobackupsBox.Text = NobackupsStr;
+                string NobackupsStr = string.Format("{0}", MySettings.Nobackups);
+                NobackupsBox.Text = NobackupsStr;
 
-            currentProfileLabel.Text = "Current Profile: " + MySettings.CurrentProfileName;
+                currentProfileLabel.Text = "Current Profile: " + MySettings.CurrentProfileName;
+
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error);
+            }
 
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {//saves values
-            //calls save function
-            MySettings.Save();
 
-            MessageBox.Show("Saved values!",
-                                     "Process complete.",
-                                     MessageBoxButtons.OK); ;
+            try
+            {
+                MySettings.Save();
+
+                MessageBox.Show("Saved values!",
+                                         "Process complete.",
+                                         MessageBoxButtons.OK); ;
+            }
+            catch
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error);
+            }
+            
         }
 
         private void BackupWorldsButton_Click(object sender, EventArgs e)
         {//backs up worlds
-            //calls the backupworlds function
-            backupWorlds();
+            try
+            {
+                backupWorlds();
+            }
+            catch
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error);
+            }
         }
 
         private void BackupPlayersButton_Click(object sender, EventArgs e)
         {//backs up players
-            //calls the backup players function
-            backupPlayers();
+            try
+            {
+                backupPlayers();
+            }
+            catch
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error);
+            }
         }
 
         private void BackupBothButton_Click(object sender, EventArgs e)
         {//backs up both
-            //calls the backup players function
-            backupBoth();
+            try
+            {
+                backupBoth();
+            }
+            catch
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error); 
+            }
         }
 
         private void BackupFilesButton_Click(object sender, EventArgs e)
         {//opens the backup files location in file explorer
-            Process.Start("explorer", @MySettings.BackupToPath);
+            try
+            {
+                Process.Start("explorer", @MySettings.BackupToPath);
+            }
+            catch
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error);
+            }
         }
 
         private void LaunchTerrariaButton_Click(object sender, EventArgs e)
@@ -79,22 +142,42 @@ namespace T_Backup //By Sam Poirier AKA darthmorf
 
         private void RestoreButton_Click(object sender, EventArgs e)
         {//opens the restore form (window)
-            RestoreForm restoreForm = new RestoreForm(MySettings);
-            restoreForm.ShowDialog();
+            try
+            {
+                RestoreForm restoreForm = new RestoreForm(MySettings);
+                restoreForm.ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error);
+            }
         }
 
         private void profileButton_Click(object sender, EventArgs e)
         {//opens the profile form (window)
-            ProfileForm settingsForm = new ProfileForm(MySettings);
-            settingsForm.ShowDialog();
-            //after the actions of the profile form, refreshes the textboxes.
-            TexepathBox.Text = MySettings.Texepath;
-            TFilesPathBox.Text = MySettings.TFilesPath;
-            BackupToPathBox.Text = MySettings.BackupToPath;
+            try
+            {
+                ProfileForm settingsForm = new ProfileForm(MySettings);
+                settingsForm.ShowDialog();
+                //after the actions of the profile form, refreshes the textboxes.
+                TexepathBox.Text = MySettings.Texepath;
+                TFilesPathBox.Text = MySettings.TFilesPath;
+                BackupToPathBox.Text = MySettings.BackupToPath;
 
-            string NobackupsStr = string.Format("{0}", MySettings.Nobackups);
-            NobackupsBox.Text = NobackupsStr;
-            currentProfileLabel.Text = "Current Profile: " + MySettings.CurrentProfileName;
+                string NobackupsStr = string.Format("{0}", MySettings.Nobackups);
+                NobackupsBox.Text = NobackupsStr;
+                currentProfileLabel.Text = "Current Profile: " + MySettings.CurrentProfileName;
+            }
+            catch
+            {
+                MessageBox.Show("Error: \n" + e + error + tbackupthread,
+                                     "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error);
+            }
         }
 
         public void backupWorlds()
@@ -108,7 +191,6 @@ namespace T_Backup //By Sam Poirier AKA darthmorf
             string TargetDir = MySettings.BackupToPath + "\\Backup " + dateTime + "\\Worlds";
             //calls the copy fuction
             DirectoryCopy(SourceDir, TargetDir, true);
-            //calls the limit backups function
             limitBackups();
 
             MessageBox.Show("Backed up Worlds!",
@@ -127,7 +209,6 @@ namespace T_Backup //By Sam Poirier AKA darthmorf
             string TargetDir = MySettings.BackupToPath + "\\Backup " + dateTime + "\\Players";
             //calls the copy function
             DirectoryCopy(SourceDir, TargetDir, true);
-            //calls the limit backups function
             limitBackups();
 
             MessageBox.Show("Backed up Players!",
@@ -152,7 +233,6 @@ namespace T_Backup //By Sam Poirier AKA darthmorf
             TargetDir = MySettings.BackupToPath + "\\Backup " + dateTime + "\\Players";
             //calls the copy function again
             DirectoryCopy(SourceDir, TargetDir, true);
-            //calls the limit backup function
             limitBackups();
 
             MessageBox.Show("Backed up Worlds and PLayers!",

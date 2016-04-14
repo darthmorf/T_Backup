@@ -34,7 +34,7 @@ namespace T_Backup
             int xPos = 0;
             foreach (string profile in profiles)
             {//for each profile that exists
-                //start to create a new button
+                //create a new button
                 Button profileButton = new Button();
                 //with 75x25 size
                 profileButton.Size = new Size(75, 25);
@@ -43,11 +43,10 @@ namespace T_Backup
                 profileButton.Text = profile;
                 //positions it after the previous button
                 profileButton.Location = new Point(xPos, 0);
-                //sets it's 'on click' function to the namelabel_Click function
+                //sets its 'on click' function to the namelabel_Click function
                 profileButton.Click += namelabel_Click;
                 //updates x-position
                 xPos += profileButton.Width;
-                //creates the button
                 panel1.Controls.Add(profileButton);
             }
         }
