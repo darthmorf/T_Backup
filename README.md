@@ -9,4 +9,4 @@ Please also post any bugs you encounter on that thread. Thanks.
 To use, simply download the latest executable and run it.
 *THIS PROGRAM IS WINDOWS ONLY*
 
-Current version: 2.0
+Current version: 3.0
