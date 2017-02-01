@@ -1,0 +1,9 @@
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\bin\Debug\T-Backup 2.0.exe.config
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\bin\Debug\T-Backup 2.0.exe
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\bin\Debug\T-Backup 2.0.pdb
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\obj\Debug\T-Backup 2.0.csprojResolveAssemblyReference.cache
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\obj\Debug\T_Backup_2._0.Properties.Resources.resources
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\obj\Debug\T-Backup 2.0.csproj.GenerateResource.Cache
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\obj\Debug\T-Backup 2.0.exe
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\obj\Debug\T-Backup 2.0.pdb
+D:\Users\Sam\Documents\Visual Studio 2015\Projects\T-Backup 2.0\T-Backup 2.0\obj\Debug\T_Backup_2._0.mainForm.resources
