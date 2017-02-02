@@ -216,6 +216,17 @@
   <metadata name="tooltips.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="folderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>110, 17</value>
+  </metadata>
+  <data name="saveButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAARCAYAAADQWvz5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfgBAYOHwm0Y9MOAAAAUUlEQVQ4T+2M0QoAIAgD
+        /f+fLpKyMZXAHutgUDemTNpFjLQ44DYoTAZwjxv1TiRwjxv1TiRwjxv1TiRwjxv1LKoJZSX7UeQfOvPC
+        ocH6FCPSAQ2qkW/OpBlQAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEATU0AAAEACADUHwAAFgAAACgAAABNAAAAmgAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

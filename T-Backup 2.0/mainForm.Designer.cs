@@ -34,15 +34,15 @@
 			this.creditLabel = new System.Windows.Forms.Label();
 			this.copyrightLabel = new System.Windows.Forms.Label();
 			this.settingsGroupBox = new System.Windows.Forms.GroupBox();
+			this.maxBackupsCounter = new System.Windows.Forms.NumericUpDown();
 			this.openBackupFolderButton = new System.Windows.Forms.Button();
 			this.openSavesFolderButton = new System.Windows.Forms.Button();
 			this.openFilesFolderButton = new System.Windows.Forms.Button();
-			this.maxBackupsTextBox = new System.Windows.Forms.TextBox();
 			this.backupMax = new System.Windows.Forms.Label();
-			this.tBackupPathTextBox = new System.Windows.Forms.TextBox();
+			this.backupPathTextBox = new System.Windows.Forms.TextBox();
 			this.backupFolderPathLabel = new System.Windows.Forms.Label();
-			this.SavesPathTextBox = new System.Windows.Forms.TextBox();
-			this.FilesPathTextBox = new System.Windows.Forms.TextBox();
+			this.savesPathTextBox = new System.Windows.Forms.TextBox();
+			this.filesPathTextBox = new System.Windows.Forms.TextBox();
 			this.filesPathLabel = new System.Windows.Forms.Label();
 			this.savesPathLabel = new System.Windows.Forms.Label();
 			this.tooltips = new System.Windows.Forms.ToolTip(this.components);
@@ -52,7 +52,7 @@
 			this.openBackupButton = new System.Windows.Forms.Button();
 			this.backupButton = new System.Windows.Forms.Button();
 			this.backupCapturesChkBox = new System.Windows.Forms.CheckBox();
-			this.backupTFilesChkBox = new System.Windows.Forms.CheckBox();
+			this.backupFilesChkBox = new System.Windows.Forms.CheckBox();
 			this.backupPlayersChkBox = new System.Windows.Forms.CheckBox();
 			this.backupWorldsChkBox = new System.Windows.Forms.CheckBox();
 			this.restoreGroupBox = new System.Windows.Forms.GroupBox();
@@ -62,8 +62,12 @@
 			this.restoreLabel = new System.Windows.Forms.Label();
 			this.profileButton = new System.Windows.Forms.Button();
 			this.fluffLabel = new System.Windows.Forms.Label();
+			this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.saveButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
 			this.settingsGroupBox.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.maxBackupsCounter)).BeginInit();
 			this.backupGroupBox.SuspendLayout();
 			this.restoreGroupBox.SuspendLayout();
 			this.SuspendLayout();
@@ -102,15 +106,15 @@
 			// 
 			// settingsGroupBox
 			// 
+			this.settingsGroupBox.Controls.Add(this.maxBackupsCounter);
 			this.settingsGroupBox.Controls.Add(this.openBackupFolderButton);
 			this.settingsGroupBox.Controls.Add(this.openSavesFolderButton);
 			this.settingsGroupBox.Controls.Add(this.openFilesFolderButton);
-			this.settingsGroupBox.Controls.Add(this.maxBackupsTextBox);
 			this.settingsGroupBox.Controls.Add(this.backupMax);
-			this.settingsGroupBox.Controls.Add(this.tBackupPathTextBox);
+			this.settingsGroupBox.Controls.Add(this.backupPathTextBox);
 			this.settingsGroupBox.Controls.Add(this.backupFolderPathLabel);
-			this.settingsGroupBox.Controls.Add(this.SavesPathTextBox);
-			this.settingsGroupBox.Controls.Add(this.FilesPathTextBox);
+			this.settingsGroupBox.Controls.Add(this.savesPathTextBox);
+			this.settingsGroupBox.Controls.Add(this.filesPathTextBox);
 			this.settingsGroupBox.Controls.Add(this.filesPathLabel);
 			this.settingsGroupBox.Controls.Add(this.savesPathLabel);
 			this.settingsGroupBox.Location = new System.Drawing.Point(12, 121);
@@ -118,6 +122,18 @@
 			this.settingsGroupBox.Size = new System.Drawing.Size(252, 219);
 			this.settingsGroupBox.TabIndex = 4;
 			this.settingsGroupBox.TabStop = false;
+			// 
+			// maxBackupsCounter
+			// 
+			this.maxBackupsCounter.Location = new System.Drawing.Point(9, 183);
+			this.maxBackupsCounter.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+			this.maxBackupsCounter.Name = "maxBackupsCounter";
+			this.maxBackupsCounter.Size = new System.Drawing.Size(237, 20);
+			this.maxBackupsCounter.TabIndex = 11;
 			// 
 			// openBackupFolderButton
 			// 
@@ -127,6 +143,7 @@
 			this.openBackupFolderButton.TabIndex = 12;
 			this.openBackupFolderButton.Text = "...";
 			this.openBackupFolderButton.UseVisualStyleBackColor = true;
+			this.openBackupFolderButton.Click += new System.EventHandler(this.openBackupFolderButton_Click);
 			// 
 			// openSavesFolderButton
 			// 
@@ -136,6 +153,7 @@
 			this.openSavesFolderButton.TabIndex = 11;
 			this.openSavesFolderButton.Text = "...";
 			this.openSavesFolderButton.UseVisualStyleBackColor = true;
+			this.openSavesFolderButton.Click += new System.EventHandler(this.openSavesFolderButton_Click);
 			// 
 			// openFilesFolderButton
 			// 
@@ -146,13 +164,6 @@
 			this.openFilesFolderButton.Text = "...";
 			this.openFilesFolderButton.UseVisualStyleBackColor = true;
 			this.openFilesFolderButton.Click += new System.EventHandler(this.openFilesFolderButton_Click);
-			// 
-			// maxBackupsTextBox
-			// 
-			this.maxBackupsTextBox.Location = new System.Drawing.Point(10, 183);
-			this.maxBackupsTextBox.Name = "maxBackupsTextBox";
-			this.maxBackupsTextBox.Size = new System.Drawing.Size(236, 20);
-			this.maxBackupsTextBox.TabIndex = 10;
 			// 
 			// backupMax
 			// 
@@ -165,12 +176,12 @@
 			this.tooltips.SetToolTip(this.backupMax, "The amount of backups to keep before the old ones are deleted - Set to 0 for neve" +
         "r");
 			// 
-			// tBackupPathTextBox
+			// backupPathTextBox
 			// 
-			this.tBackupPathTextBox.Location = new System.Drawing.Point(9, 135);
-			this.tBackupPathTextBox.Name = "tBackupPathTextBox";
-			this.tBackupPathTextBox.Size = new System.Drawing.Size(208, 20);
-			this.tBackupPathTextBox.TabIndex = 9;
+			this.backupPathTextBox.Location = new System.Drawing.Point(9, 135);
+			this.backupPathTextBox.Name = "backupPathTextBox";
+			this.backupPathTextBox.Size = new System.Drawing.Size(208, 20);
+			this.backupPathTextBox.TabIndex = 9;
 			// 
 			// backupFolderPathLabel
 			// 
@@ -182,19 +193,19 @@
 			this.backupFolderPathLabel.Text = "Folder to Backup to:";
 			this.tooltips.SetToolTip(this.backupFolderPathLabel, "Folder to save backups to");
 			// 
-			// SavesPathTextBox
+			// savesPathTextBox
 			// 
-			this.SavesPathTextBox.Location = new System.Drawing.Point(10, 83);
-			this.SavesPathTextBox.Name = "SavesPathTextBox";
-			this.SavesPathTextBox.Size = new System.Drawing.Size(207, 20);
-			this.SavesPathTextBox.TabIndex = 8;
+			this.savesPathTextBox.Location = new System.Drawing.Point(10, 83);
+			this.savesPathTextBox.Name = "savesPathTextBox";
+			this.savesPathTextBox.Size = new System.Drawing.Size(207, 20);
+			this.savesPathTextBox.TabIndex = 8;
 			// 
-			// FilesPathTextBox
+			// filesPathTextBox
 			// 
-			this.FilesPathTextBox.Location = new System.Drawing.Point(9, 32);
-			this.FilesPathTextBox.Name = "FilesPathTextBox";
-			this.FilesPathTextBox.Size = new System.Drawing.Size(208, 20);
-			this.FilesPathTextBox.TabIndex = 8;
+			this.filesPathTextBox.Location = new System.Drawing.Point(9, 32);
+			this.filesPathTextBox.Name = "filesPathTextBox";
+			this.filesPathTextBox.Size = new System.Drawing.Size(208, 20);
+			this.filesPathTextBox.TabIndex = 8;
 			// 
 			// filesPathLabel
 			// 
@@ -252,7 +263,7 @@
 			this.backupGroupBox.Controls.Add(this.backupButton);
 			this.backupGroupBox.Controls.Add(this.backupDataChkBox);
 			this.backupGroupBox.Controls.Add(this.backupCapturesChkBox);
-			this.backupGroupBox.Controls.Add(this.backupTFilesChkBox);
+			this.backupGroupBox.Controls.Add(this.backupFilesChkBox);
 			this.backupGroupBox.Controls.Add(this.backupPlayersChkBox);
 			this.backupGroupBox.Controls.Add(this.backupWorldsChkBox);
 			this.backupGroupBox.Location = new System.Drawing.Point(270, 26);
@@ -289,15 +300,15 @@
 			this.backupCapturesChkBox.Text = "Backup Captures";
 			this.backupCapturesChkBox.UseVisualStyleBackColor = true;
 			// 
-			// backupTFilesChkBox
+			// backupFilesChkBox
 			// 
-			this.backupTFilesChkBox.AutoSize = true;
-			this.backupTFilesChkBox.Location = new System.Drawing.Point(6, 65);
-			this.backupTFilesChkBox.Name = "backupTFilesChkBox";
-			this.backupTFilesChkBox.Size = new System.Drawing.Size(126, 17);
-			this.backupTFilesChkBox.TabIndex = 7;
-			this.backupTFilesChkBox.Text = "Backup Terraria Files";
-			this.backupTFilesChkBox.UseVisualStyleBackColor = true;
+			this.backupFilesChkBox.AutoSize = true;
+			this.backupFilesChkBox.Location = new System.Drawing.Point(6, 65);
+			this.backupFilesChkBox.Name = "backupFilesChkBox";
+			this.backupFilesChkBox.Size = new System.Drawing.Size(126, 17);
+			this.backupFilesChkBox.TabIndex = 7;
+			this.backupFilesChkBox.Text = "Backup Terraria Files";
+			this.backupFilesChkBox.UseVisualStyleBackColor = true;
 			// 
 			// backupPlayersChkBox
 			// 
@@ -339,6 +350,7 @@
 			this.openRestorePathFolderButton.TabIndex = 13;
 			this.openRestorePathFolderButton.Text = "...";
 			this.openRestorePathFolderButton.UseVisualStyleBackColor = true;
+			this.openRestorePathFolderButton.Click += new System.EventHandler(this.openRestorePathFolderButton_Click);
 			// 
 			// restoreButton
 			// 
@@ -367,12 +379,13 @@
 			// 
 			// profileButton
 			// 
-			this.profileButton.Location = new System.Drawing.Point(270, 3);
+			this.profileButton.Location = new System.Drawing.Point(301, 3);
 			this.profileButton.Name = "profileButton";
-			this.profileButton.Size = new System.Drawing.Size(165, 23);
+			this.profileButton.Size = new System.Drawing.Size(134, 23);
 			this.profileButton.TabIndex = 8;
 			this.profileButton.Text = "Change Profile";
 			this.profileButton.UseVisualStyleBackColor = true;
+			this.profileButton.Click += new System.EventHandler(this.profileButton_Click);
 			// 
 			// fluffLabel
 			// 
@@ -384,11 +397,32 @@
 			this.fluffLabel.TabIndex = 9;
 			this.fluffLabel.Text = "A Terraria Backup utility program";
 			// 
+			// progressBar1
+			// 
+			this.progressBar1.Location = new System.Drawing.Point(12, 346);
+			this.progressBar1.Name = "progressBar1";
+			this.progressBar1.Size = new System.Drawing.Size(423, 23);
+			this.progressBar1.TabIndex = 10;
+			// 
+			// saveButton
+			// 
+			this.saveButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("saveButton.BackgroundImage")));
+			this.saveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.saveButton.Location = new System.Drawing.Point(270, 3);
+			this.saveButton.Name = "saveButton";
+			this.saveButton.Size = new System.Drawing.Size(25, 23);
+			this.saveButton.TabIndex = 11;
+			this.tooltips.SetToolTip(this.saveButton, "Saves all loaded profiles");
+			this.saveButton.UseVisualStyleBackColor = true;
+			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+			// 
 			// mainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(445, 351);
+			this.ClientSize = new System.Drawing.Size(445, 379);
+			this.Controls.Add(this.saveButton);
+			this.Controls.Add(this.progressBar1);
 			this.Controls.Add(this.fluffLabel);
 			this.Controls.Add(this.profileButton);
 			this.Controls.Add(this.backupGroupBox);
@@ -402,9 +436,11 @@
 			this.MaximizeBox = false;
 			this.Name = "mainForm";
 			this.Text = "T-Backup";
+			this.Load += new System.EventHandler(this.mainForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
 			this.settingsGroupBox.ResumeLayout(false);
 			this.settingsGroupBox.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.maxBackupsCounter)).EndInit();
 			this.backupGroupBox.ResumeLayout(false);
 			this.backupGroupBox.PerformLayout();
 			this.restoreGroupBox.ResumeLayout(false);
@@ -425,14 +461,13 @@
 		private System.Windows.Forms.Label savesPathLabel;
 		private System.Windows.Forms.Label filesPathLabel;
 		private System.Windows.Forms.ToolTip tooltips;
-		private System.Windows.Forms.TextBox FilesPathTextBox;
-		private System.Windows.Forms.TextBox SavesPathTextBox;
-		private System.Windows.Forms.TextBox maxBackupsTextBox;
-		private System.Windows.Forms.TextBox tBackupPathTextBox;
+		private System.Windows.Forms.TextBox filesPathTextBox;
+		private System.Windows.Forms.TextBox savesPathTextBox;
+		private System.Windows.Forms.TextBox backupPathTextBox;
 		private System.Windows.Forms.GroupBox backupGroupBox;
 		private System.Windows.Forms.CheckBox backupDataChkBox;
 		private System.Windows.Forms.CheckBox backupCapturesChkBox;
-		private System.Windows.Forms.CheckBox backupTFilesChkBox;
+		private System.Windows.Forms.CheckBox backupFilesChkBox;
 		private System.Windows.Forms.CheckBox backupPlayersChkBox;
 		private System.Windows.Forms.CheckBox backupWorldsChkBox;
 		private System.Windows.Forms.Button openBackupButton;
@@ -448,6 +483,10 @@
 		private System.Windows.Forms.Button openRestorePathFolderButton;
 		private System.Windows.Forms.Button profileButton;
 		private System.Windows.Forms.Label fluffLabel;
+		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+		private System.Windows.Forms.ProgressBar progressBar1;
+		private System.Windows.Forms.NumericUpDown maxBackupsCounter;
+		private System.Windows.Forms.Button saveButton;
 	}
 }
 
