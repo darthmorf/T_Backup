@@ -48,6 +48,7 @@
 			this.tooltips = new System.Windows.Forms.ToolTip(this.components);
 			this.backupDataChkBox = new System.Windows.Forms.CheckBox();
 			this.runOnStartupChkBox = new System.Windows.Forms.CheckBox();
+			this.saveButton = new System.Windows.Forms.Button();
 			this.backupGroupBox = new System.Windows.Forms.GroupBox();
 			this.openBackupButton = new System.Windows.Forms.Button();
 			this.backupButton = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
 			this.fluffLabel = new System.Windows.Forms.Label();
 			this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
-			this.saveButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
 			this.settingsGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.maxBackupsCounter)).BeginInit();
@@ -134,6 +134,7 @@
 			this.maxBackupsCounter.Name = "maxBackupsCounter";
 			this.maxBackupsCounter.Size = new System.Drawing.Size(237, 20);
 			this.maxBackupsCounter.TabIndex = 11;
+			this.maxBackupsCounter.ValueChanged += new System.EventHandler(this.maxBackupsCounter_ValueChanged);
 			// 
 			// openBackupFolderButton
 			// 
@@ -182,6 +183,7 @@
 			this.backupPathTextBox.Name = "backupPathTextBox";
 			this.backupPathTextBox.Size = new System.Drawing.Size(208, 20);
 			this.backupPathTextBox.TabIndex = 9;
+			this.backupPathTextBox.TextChanged += new System.EventHandler(this.backupPathTextBox_TextChanged);
 			// 
 			// backupFolderPathLabel
 			// 
@@ -199,6 +201,7 @@
 			this.savesPathTextBox.Name = "savesPathTextBox";
 			this.savesPathTextBox.Size = new System.Drawing.Size(207, 20);
 			this.savesPathTextBox.TabIndex = 8;
+			this.savesPathTextBox.TextChanged += new System.EventHandler(this.savesPathTextBox_TextChanged);
 			// 
 			// filesPathTextBox
 			// 
@@ -206,6 +209,7 @@
 			this.filesPathTextBox.Name = "filesPathTextBox";
 			this.filesPathTextBox.Size = new System.Drawing.Size(208, 20);
 			this.filesPathTextBox.TabIndex = 8;
+			this.filesPathTextBox.TextChanged += new System.EventHandler(this.filesPathTextBox_TextChanged);
 			// 
 			// filesPathLabel
 			// 
@@ -244,6 +248,7 @@
 			this.tooltips.SetToolTip(this.backupDataChkBox, "This includes \'achievments.dat\', \'config.json\', \'favourites.json\', \'input profile" +
         "s.json\' & \'servers.dat\'");
 			this.backupDataChkBox.UseVisualStyleBackColor = true;
+			this.backupDataChkBox.CheckedChanged += new System.EventHandler(this.backupDataChkBox_CheckedChanged);
 			// 
 			// runOnStartupChkBox
 			// 
@@ -255,6 +260,19 @@
 			this.runOnStartupChkBox.Text = "Run on Terraria Startup?";
 			this.tooltips.SetToolTip(this.runOnStartupChkBox, "Requires a PC restart to take effect");
 			this.runOnStartupChkBox.UseVisualStyleBackColor = true;
+			this.runOnStartupChkBox.CheckedChanged += new System.EventHandler(this.runOnStartupChkBox_CheckedChanged);
+			// 
+			// saveButton
+			// 
+			this.saveButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("saveButton.BackgroundImage")));
+			this.saveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.saveButton.Location = new System.Drawing.Point(270, 3);
+			this.saveButton.Name = "saveButton";
+			this.saveButton.Size = new System.Drawing.Size(25, 23);
+			this.saveButton.TabIndex = 11;
+			this.tooltips.SetToolTip(this.saveButton, "Saves all loaded profiles");
+			this.saveButton.UseVisualStyleBackColor = true;
+			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
 			// 
 			// backupGroupBox
 			// 
@@ -299,6 +317,7 @@
 			this.backupCapturesChkBox.TabIndex = 7;
 			this.backupCapturesChkBox.Text = "Backup Captures";
 			this.backupCapturesChkBox.UseVisualStyleBackColor = true;
+			this.backupCapturesChkBox.CheckedChanged += new System.EventHandler(this.backupCapturesChkBox_CheckedChanged);
 			// 
 			// backupFilesChkBox
 			// 
@@ -309,6 +328,7 @@
 			this.backupFilesChkBox.TabIndex = 7;
 			this.backupFilesChkBox.Text = "Backup Terraria Files";
 			this.backupFilesChkBox.UseVisualStyleBackColor = true;
+			this.backupFilesChkBox.CheckedChanged += new System.EventHandler(this.backupFilesChkBox_CheckedChanged);
 			// 
 			// backupPlayersChkBox
 			// 
@@ -319,6 +339,7 @@
 			this.backupPlayersChkBox.TabIndex = 7;
 			this.backupPlayersChkBox.Text = "Backup Players";
 			this.backupPlayersChkBox.UseVisualStyleBackColor = true;
+			this.backupPlayersChkBox.CheckedChanged += new System.EventHandler(this.backupPlayersChkBox_CheckedChanged);
 			// 
 			// backupWorldsChkBox
 			// 
@@ -329,6 +350,7 @@
 			this.backupWorldsChkBox.TabIndex = 0;
 			this.backupWorldsChkBox.Text = "Backup Worlds";
 			this.backupWorldsChkBox.UseVisualStyleBackColor = true;
+			this.backupWorldsChkBox.CheckedChanged += new System.EventHandler(this.backupWorldsChkBox_CheckedChanged);
 			// 
 			// restoreGroupBox
 			// 
@@ -367,6 +389,7 @@
 			this.restorePathTextBox.Name = "restorePathTextBox";
 			this.restorePathTextBox.Size = new System.Drawing.Size(122, 20);
 			this.restorePathTextBox.TabIndex = 1;
+			this.restorePathTextBox.TextChanged += new System.EventHandler(this.restorePathTextBox_TextChanged);
 			// 
 			// restoreLabel
 			// 
@@ -403,18 +426,6 @@
 			this.progressBar1.Name = "progressBar1";
 			this.progressBar1.Size = new System.Drawing.Size(423, 23);
 			this.progressBar1.TabIndex = 10;
-			// 
-			// saveButton
-			// 
-			this.saveButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("saveButton.BackgroundImage")));
-			this.saveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.saveButton.Location = new System.Drawing.Point(270, 3);
-			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(25, 23);
-			this.saveButton.TabIndex = 11;
-			this.tooltips.SetToolTip(this.saveButton, "Saves all loaded profiles");
-			this.saveButton.UseVisualStyleBackColor = true;
-			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
 			// 
 			// mainForm
 			// 

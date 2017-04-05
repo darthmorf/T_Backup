@@ -1,0 +1,30 @@
+[
+  {
+    "profileName": "default",
+    "filesPath": "C:\\Program Files (x86)\\Steam\\Steamapps\\common\\Terraria",
+    "savesPath": "ocuments\\My Games\\Terraria",
+    "backupPath": "D:\\Users\\Sam\\Documents\\Terraria Backups",
+    "restorePath": "D:\\Users\\Sam\\Documents\\Terraria Backups",
+    "maxBackups": 0,
+    "backupWorlds": true,
+    "backupPlayers": true,
+    "backupFiles": true,
+    "backupCaptures": true,
+    "backupMisc": true,
+    "runOnStartup": false
+  },
+  {
+    "profileName": "poop",
+    "filesPath": "C:\\Program Files (x86)\\Steam\\Steamapps\\common\\Terraria",
+    "savesPath": "D:\\Users\\Sam\\Games\\Terraria",
+    "backupPath": "D:\\Users\\Sam\\Documents\\Terraria Backups",
+    "restorePath": "D:\\Users\\Sam\\Documents\\Terraria Backups",
+    "maxBackups": 0,
+    "backupWorlds": true,
+    "backupPlayers": true,
+    "backupFiles": true,
+    "backupCaptures": true,
+    "backupMisc": true,
+    "runOnStartup": false
+  }
+]

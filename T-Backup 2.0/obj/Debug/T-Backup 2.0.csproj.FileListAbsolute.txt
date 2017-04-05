@@ -18,3 +18,4 @@ D:\Users\Sam\Documents\GitHub\T_Backup\T-Backup 2.0\obj\Debug\T_Backup_2._0.Prop
 D:\Users\Sam\Documents\GitHub\T_Backup\T-Backup 2.0\obj\Debug\T-Backup 2.0.csproj.GenerateResource.Cache
 D:\Users\Sam\Documents\GitHub\T_Backup\T-Backup 2.0\bin\Debug\Newtonsoft.Json.dll
 D:\Users\Sam\Documents\GitHub\T_Backup\T-Backup 2.0\bin\Debug\Newtonsoft.Json.xml
+D:\Users\Sam\Documents\GitHub\T_Backup\T-Backup 2.0\obj\Debug\T_Backup_2._0.profileForm.resources

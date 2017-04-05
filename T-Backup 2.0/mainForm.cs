@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 
-struct profileData
+public struct profileData
 {
 	//a struct to contain all the data needed to save a profile
 	public string profileName;
@@ -55,6 +55,18 @@ namespace T_Backup_2._0
 
 		private void saveProfiles()
 		{
+			//return the loaded profile to the list
+			int i = 0;
+			foreach (profileData profile in profiles)
+			{
+				if (profile.profileName == loadedProfile.profileName)
+				{
+					profiles[i] = loadedProfile;
+					break;
+				}
+				i++;
+			}
+
 			//write the profiles to file, all nicely formatted
 			var json = JsonConvert.SerializeObject(profiles, Formatting.Indented);
 			System.IO.File.WriteAllText(@"profiles.json", json);
@@ -177,14 +189,50 @@ namespace T_Backup_2._0
 		private void openBackupFolderButton_Click(object sender, EventArgs e) { backupPathTextBox.Text = openfolder(backupPathTextBox.Text); }
 		private void openRestorePathFolderButton_Click(object sender, EventArgs e) { restorePathTextBox.Text = openfolder(restorePathTextBox.Text); }
 
+		//open profile dialog
 		private void profileButton_Click(object sender, EventArgs e)
 		{
-
+			using (profileForm profileForm = new profileForm(profiles, loadedProfile))
+			{
+				var result = profileForm.ShowDialog(this);
+				if (result == DialogResult.OK)
+				{
+					profiles = profileForm.ReturnValue1;
+					loadedProfile = profileForm.ReturnValue2;
+					setupProfile();
+				}
+			}
 		}
 
 		private void saveButton_Click(object sender, EventArgs e)
 		{
 			saveProfiles();
+		}
+
+		//update loaded profile when textboxes are changed
+		private void filesPathTextBox_TextChanged(object sender, EventArgs e) { loadedProfile.filesPath = filesPathTextBox.Text; }
+
+		private void savesPathTextBox_TextChanged(object sender, EventArgs e) { loadedProfile.savesPath = savesPathTextBox.Text; }
+
+		private void backupPathTextBox_TextChanged(object sender, EventArgs e) { loadedProfile.backupPath = backupPathTextBox.Text; }
+
+		private void maxBackupsCounter_ValueChanged(object sender, EventArgs e) { loadedProfile.maxBackups = (int)maxBackupsCounter.Value; }
+
+		private void restorePathTextBox_TextChanged(object sender, EventArgs e) { loadedProfile.restorePath = restorePathTextBox.Text; }
+
+		private void backupWorldsChkBox_CheckedChanged(object sender, EventArgs e) { loadedProfile.backupWorlds = backupWorldsChkBox.Checked; }
+
+		private void backupPlayersChkBox_CheckedChanged(object sender, EventArgs e) { loadedProfile.backupPlayers = backupPlayersChkBox.Checked; }
+
+		private void backupFilesChkBox_CheckedChanged(object sender, EventArgs e) { loadedProfile.backupFiles = backupFilesChkBox.Checked; }
+
+		private void backupCapturesChkBox_CheckedChanged(object sender, EventArgs e) { loadedProfile.backupCaptures = backupCapturesChkBox.Checked; }
+
+		private void backupDataChkBox_CheckedChanged(object sender, EventArgs e) { loadedProfile.backupMisc = backupDataChkBox.Checked; }
+
+		private void runOnStartupChkBox_CheckedChanged(object sender, EventArgs e)
+		{
+			loadedProfile.runOnStartup = runOnStartupChkBox.Checked;
 		}
 	}
 }
